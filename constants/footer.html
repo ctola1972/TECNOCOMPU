@@ -1,0 +1,42 @@
+<div  class="fixed-action-btn">
+    <a class="btn-floating btn-large ">
+        <i class="large material-icons">menu</i>
+    </a>
+    <ul >
+        <li><a href="./" class="btn-floating red"><i class="material-icons">home</i></a></li>
+        <li><a onClick="javascript:history.back();" class="btn-floating yellow darken-1"><i class="material-icons">arrow_back</i></a>
+        </li>
+        <li><a onclick="location.reload();" class="btn-floating green"><i class="material-icons">autorenew</i></a></li>
+    </ul>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.sidenav').sidenav();
+        $('select').formSelect();
+        $('.datepicker').datepicker({
+            format: 'yyyy-mm-dd'
+        });
+        $('.dropdown-trigger').dropdown();
+        $('.modal').modal();
+        $('.collapsible').collapsible();
+        $('.fixed-action-btn').floatingActionButton({
+            direction: 'left',
+            hoverEnabled: false
+        });
+        $('.carousel').carousel();
+        $('.slider').slider();
+    });
+    var refreshTime = 600000; // every 10 minutes in milliseconds window.setInterval
+    setTimeout(function () {
+        $.ajax({
+            cache: false,
+            type: "GET",
+            url: "../../constants/refreshSession.php",
+            success: function (data) {
+                console.log("se restablecio el tiempo de la session");
+            }
+        });
+    }, refreshTime);
+</script>
