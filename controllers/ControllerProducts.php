@@ -15,10 +15,10 @@ class ControllerProducts
         $this->products = $this->objProducts;
     }
 
-    public function setProducts($argCodigoP,$argImagenP, $argNombreP, $argDescripcionP, $argPrecioP, $argAction)
+    public function setProducts($argCodigoP, $argImagenP, $argNombreP, $argDescripcionP, $argPrecioP, $argAction)
     {
         try {
-            $result = $this->products->setProducts($argCodigoP,$argImagenP, $argNombreP, $argDescripcionP, $argPrecioP, $argAction);
+            $result = $this->products->setProducts($argCodigoP, $argImagenP, $argNombreP, $argDescripcionP, $argPrecioP, $argAction);
         } catch (PDOException $e) {
             die("¡Error! : " . $e->getMessage());
         }
@@ -52,20 +52,21 @@ class ControllerProducts
         } else {
             return NULL;
         }
-
     }
 
-    public function findProduct($argCodProduct){
+    public function findProduct($argCodProduct)
+    {
 
         try {
             $data = $this->products->findProduct($argCodProduct);
             return $data;
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             die("¡Error! : " . $e->getMessage());
         }
     }
 
-    Public function getDataProductos($argCodigoProducto){
+    public function getDataProductos($argCodigoProducto)
+    {
         try {
             return  $this->products->findProduct($argCodigoProducto);
         } catch (PDOException $e) {
@@ -84,10 +85,10 @@ if (isset($_POST)) {
             if ($_POST["form_action"] == "1") {
                 $uploadImg = $products->uploadImage($codigo_producto);
                 if ($uploadImg != NULL) {
-                    $message = $products->setProducts($codigo_producto, $uploadImg, $nombre_producto, $descripcion_producto, $precio,$form_action);
-                    if ($message != NULL){
+                    $message = $products->setProducts($codigo_producto, $uploadImg, $nombre_producto, $descripcion_producto, $precio, $form_action);
+                    if ($message != NULL) {
                         echo $message;
-                    }else{
+                    } else {
                         echo "0";
                     }
                 } else {
@@ -96,22 +97,21 @@ if (isset($_POST)) {
             } elseif ($_POST["form_action"] == "2") {
                 $uploadImg = $products->uploadImage($codigo_producto);
                 if ($uploadImg != NULL) {
-                    $message = $products->setProducts($codigo_producto, $uploadImg, $nombre_producto, $descripcion_producto, $precio,$form_action);
-                    if ($message != NULL){
+                    $message = $products->setProducts($codigo_producto, $uploadImg, $nombre_producto, $descripcion_producto, $precio, $form_action);
+                    if ($message != NULL) {
                         echo $message;
-                    }else{
+                    } else {
                         echo "0";
                     }
                 } else {
                     echo "ERROR AL ACTUALIZAR LA IMAGEN";
                 }
             } elseif ($_POST["form_action"] == "3") {
-
             }
         }
     }
 
-    if(isset($_POST["findProducts"])) {
+    if (isset($_POST["findProducts"])) {
         if ($_POST["findProducts"] == "true") {
             $result = $products->findProduct($_POST["codProduct"]);
             echo json_encode($result);
@@ -120,14 +120,11 @@ if (isset($_POST)) {
 }
 
 
-if (isset($_GET)){
-    if (isset($_GET["get_product"],$_GET["codigo_producto"])){
-        if ($_GET["get_product"] == 1){
+if (isset($_GET)) {
+    if (isset($_GET["get_product"], $_GET["codigo_producto"])) {
+        if ($_GET["get_product"] == 1) {
             extract($_GET);
             echo json_encode($products->getDataProductos($codigo_producto));
         }
     }
 }
-
-
-

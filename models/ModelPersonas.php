@@ -1,5 +1,6 @@
 <?php
-class ModelPersonas{
+class ModelPersonas
+{
     private $objConexion;
     private $conexion;
 
@@ -10,43 +11,43 @@ class ModelPersonas{
     }
 
 
-    public function getNombresVendedor($argCedula){
+    public function getNombresVendedor($argCedula)
+    {
         try {
             $this->query = "SELECT CONCAT(PRIMER_NOMBRE,' ',SEGUNDO_NOMBRE,' ',PRIMER_APELLIDO,' ',SEGUNDO_APELLIDO) AS NOMBRES FROM TECNOCOMPU.PERSONAS WHERE CEDULA = :CEDULA";
-        }catch (PDOException $e){
-            die("¡Error!: ".$e->getMessage());
+        } catch (PDOException $e) {
+            die("¡Error!: " . $e->getMessage());
         }
 
         try {
             $this->stmt = $this->conexion->prepare($this->query);
-        }catch (PDOException $e){
-            die("¡Error!: ".$e->getMessage());
+        } catch (PDOException $e) {
+            die("¡Error!: " . $e->getMessage());
         }
 
         try {
-            $this->stmt->bindParam(":CEDULA",$argCedula,PDO::PARAM_STR,13);
-        }catch (PDOException $e){
-            die("¡Error!: ".$e->getMessage());
+            $this->stmt->bindParam(":CEDULA", $argCedula, PDO::PARAM_STR, 13);
+        } catch (PDOException $e) {
+            die("¡Error!: " . $e->getMessage());
         }
 
         try {
-            if (isset($this->stmt)){
-                if ($this->stmt->execute()){
+            if (isset($this->stmt)) {
+                if ($this->stmt->execute()) {
                     $result = $this->stmt->fetchAll(PDO::FETCH_ASSOC);
-                    if ($result != NULL){
+                    if ($result != NULL) {
                         return $result[0]["NOMBRES"];
-                    }else{
+                    } else {
                         return NULL;
                     }
-                }else{
+                } else {
                     return NULL;
                 }
-            }else{
+            } else {
                 return NULL;
             }
-        }catch (PDOException $e){
-            die("¡Error!: ".$e->getMessage());
+        } catch (PDOException $e) {
+            die("¡Error!: " . $e->getMessage());
         }
-
     }
 }

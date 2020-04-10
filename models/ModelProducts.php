@@ -15,7 +15,7 @@ class ModelProducts
         $this->query = "";
     }
 
-    public function setProducts($argCodigoP,$argImagenP, $argNombreP, $argDescripcionP, $argPrecioP, $argAction)
+    public function setProducts($argCodigoP, $argImagenP, $argNombreP, $argDescripcionP, $argPrecioP, $argAction)
     {
 
         try {
@@ -79,7 +79,6 @@ class ModelProducts
                     } else {
                         return NULL;
                     }
-
                 } else {
                     return NULL;
                 }
@@ -89,45 +88,43 @@ class ModelProducts
         } catch (PDOException $e) {
             die("¡Error! : " . $e->getMessage());
         }
-
     }
 
-    public function findProduct($argCodProducts){
+    public function findProduct($argCodProducts)
+    {
         try {
             $this->query = "SELECT * FROM TECNOCOMPU.PRODUCTOS WHERE COD_PRDUCTO = :CODPRODUCT";
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             die("¡Error! : " . $e->getMessage());
         }
 
         try {
             $this->stmt = $this->conexion->prepare($this->query);
-        }catch (PDOException $e) {
+        } catch (PDOException $e) {
             die("¡Error! : " . $e->getMessage());
         }
 
         try {
-            $this->stmt->bindParam(":CODPRODUCT",$argCodProducts,PDO::PARAM_STR,200);
-        }catch (PDOException $e) {
+            $this->stmt->bindParam(":CODPRODUCT", $argCodProducts, PDO::PARAM_STR, 200);
+        } catch (PDOException $e) {
             die("¡Error! : " . $e->getMessage());
         }
 
 
         try {
-           if(isset($this->stmt)){
-               if($this->stmt->execute()){
-                   $data = $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+            if (isset($this->stmt)) {
+                if ($this->stmt->execute()) {
+                    $data = $this->stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                   if($data != NULL){
-                       return $data;
-                   }else{
-                       return NULL;
-                   }
-               }
-           }
-        }catch (PDOException $e) {
+                    if ($data != NULL) {
+                        return $data;
+                    } else {
+                        return NULL;
+                    }
+                }
+            }
+        } catch (PDOException $e) {
             die("¡Error! : " . $e->getMessage());
         }
-
     }
-
 }

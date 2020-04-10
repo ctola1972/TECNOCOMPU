@@ -14,7 +14,7 @@ class ControllerLogin
             session_set_cookie_params(86400);
             ini_set('session.gc_maxlifetime', 86400);
             session_start();
-            $_SESSION['tecnoUser'] = (string)$usuario;
+            $_SESSION['tecnoUser'] = (string) $usuario;
             $tipoUsuario = $objLoginM->getTypeUser($usuario);
             $_SESSION['tecnoUserType'] = $tipoUsuario;
             return 1;
