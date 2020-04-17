@@ -6,7 +6,7 @@ class Conexion
     {
     }
 
-    private $host = "localhost"; // variable para definir el host
+    private $host = "3.14.82.157"; // variable para definir el host
     private $db = "TECNOCOMPU"; // variable para definir la base de datos en la que vamos a trabajar
     private $user = "jszambranor"; // variable para definir el usuario que usaremos para ejecutar las consultas en la base de datos
     private $pass = "#passwordJszr2020"; // variable para definir la contraseña del usuario para mysql_server
