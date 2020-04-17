@@ -8,8 +8,8 @@ class Conexion
 
     private $host = "3.14.82.157"; // variable para definir el host
     private $db = "TECNOCOMPU"; // variable para definir la base de datos en la que vamos a trabajar
-    private $user = "jszambranor"; // variable para definir el usuario que usaremos para ejecutar las consultas en la base de datos
-    private $pass = "#passwordJszr2020"; // variable para definir la contraseña del usuario para mysql_server
+    private $user = "tola"; // variable para definir el usuario que usaremos para ejecutar las consultas en la base de datos
+    private $pass = "#passwordTOLA593"; // variable para definir la contraseña del usuario para mysql_server
     private $opciones = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
 
     private function conexion() // nombre de la funcion para obtener la conexion es de tipo privada
